@@ -1,17 +1,10 @@
--- Script that creates the database hbtn_0d_usa and the table cities 
--- Columns: id(UNIQUE, AUTO_INCREMENT, PRIMARY KEY, NOT NULL), state_id(NOT NULL, FK to id in states), name(NOT NULL)
--- No failing if exists
-
--- Create Database
+-- creates the database hbtn_0d_usa and the table cities (in the database hbtn_0d_usa) on your MySQL server.
 CREATE DATABASE IF NOT EXISTS hbtn_0d_usa;
-
 USE hbtn_0d_usa;
-
--- Create Table
-CREATE TABLE IF NOT EXISTS cities(
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
-    state_id INT NOT NULL,
-    name VARCHAR(256),
-    INDEX(state_id),
-    FOREIGN KEY (state_id) REFERENCES states(id)
+CREATE TABLE IF NOT EXISTS cities (
+	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	state_id INT NOT NULL,
+	name VARCHAR(256) NOT NULL,
+	FOREIGN KEY (state_id) REFERENCES states(id)
 );
+ALTER TABLE hbtn_0d_usa.cities ADD CONSTRAINT unique_id_constraint UNIQUE KEY(id);
